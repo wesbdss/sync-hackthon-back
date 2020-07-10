@@ -1,6 +1,8 @@
 const express = require('express')
 const index = require('./routes/index')
 const users = require('./routes/users')
+const http = require('http')
+const websocket = require('ws')
 // var mongo = require('mongodb')
 const app = express()
 const port = process.env.PORT || 3000
@@ -41,5 +43,29 @@ app.post('/users/login', users.login)
 
 app.post('/users/:id', users.atualiza)
 
+//WebSocket chat
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+// para iniciar com nome 
+//{'name':'Wesley','data':'meu amigo'}
+
+
+const server = http.createServer(app);
+const wss = new websocket.Server({ server });
+
+var conn = []
+
+//broadcast messages
+wss.on('connection', (ws) => {
+    ws.send("Conectado", ws);
+    conn.push(ws)
+    ws.on('message',(message) =>{
+        message = JSON.parse(message)
+        conn.forEach((cone) => {
+            cone.send(JSON.stringify(message))
+        });
+        console.log(message['name']," mandou '"+message['data']+"'")
+        
+    })
+})
+
+server.listen(port, () => {console.log(`Server Socket on port ${server.address().port} :)`);});
