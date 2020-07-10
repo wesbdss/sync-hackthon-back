@@ -11,7 +11,8 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "nodemon app.js localhost",
+    "start": "node app.js",
+    "local": "nodemon app.js localhost",
     "createdb": "node create_mongo_db.js"
   },
   "engines": {
