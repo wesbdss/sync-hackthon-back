@@ -12,8 +12,8 @@
     "ws": "^7.3.1"
   },
   "scripts": {
-    "start": "node app.js",
-    "local": "nodemon app.js localhost",
+    "start": "node src/index.js",
+    "local": "nodemon src/index.js localhost",
     "createdb": "node create_mongo_db.js"
   },
   "engines": {
