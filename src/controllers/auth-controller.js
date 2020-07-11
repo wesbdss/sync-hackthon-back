@@ -15,7 +15,7 @@ const authController = {
         .then(response => {
           response
             ? res.json(response)
-            : res.status(404).json({
+            : res.status(401).json({
                 message: 'Invalid e-mail.',
               })
 

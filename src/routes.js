@@ -4,7 +4,7 @@ const userController = require('./controllers/user-controller')
 
 const route = express()
 
-route.get('/login', authController.login)
+route.post('/login', authController.login)
 route.post('/register', authController.register)
 
 route.get('/users', userController.index)
