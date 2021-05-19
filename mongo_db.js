@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 const uri = "mongodb+srv://admin:admin@cluster0.gzwwd.gcp.mongodb.net?retryWrites=true&w=majority";
 
 function teste() {
@@ -73,11 +74,11 @@ function sort() {
   });
 }
 
-function del() {
+function del(id) {
   MongoClient.connect(uri, function (err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
-    var myquery = { address: 'Mountain 21' };
+    var myquery = { _id: ObjectID(id) };
     dbo.collection("users").deleteOne(myquery, function (err, obj) {
       if (err) throw err;
       console.log("1 document deleted");
@@ -97,6 +98,8 @@ function drop_collection() {
     });
   });
 }
+
+
 
 
 function update() {
@@ -124,3 +127,5 @@ function limit() {
     });
   });
 }
+
+drop_collection();
