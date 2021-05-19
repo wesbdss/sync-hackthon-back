@@ -17,7 +17,11 @@
     </form>
 
     <script>
+<<<<<<< HEAD:chat.html
         const connection = new WebSocket('wss://sync-o-back.herokuapp.com/');
+=======
+        const connection = new WebSocket('ws://localhost:3333');
+>>>>>>> 5a6ea80a4ce777ca93a80ed92d2c2d08ed33bebe:tests/websocket-chat.html
 
         connection.onopen = () => {
             console.log('connected');
